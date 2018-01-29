@@ -1,9 +1,6 @@
 package com.potatospy;
 
-import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.Graphics;
-import org.newdawn.slick.Image;
-import org.newdawn.slick.SlickException;
+import org.newdawn.slick.*;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import org.lwjgl.input.Mouse;
@@ -33,8 +30,10 @@ public class Menu extends BasicGameState{
     // Draws graphics ////////////////////////////////////////////////////////
     public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics g) throws SlickException{
 
+        // Draw Mouse coordinates
         g.drawString(mouseLoc, 50, 50);
 
+        // Draw initial face position
         g.drawImage(face,faceX,faceY);
 
     }
@@ -43,9 +42,23 @@ public class Menu extends BasicGameState{
     // Updating graphics /////////////////////////////////////////////////////
     public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int delta) throws SlickException{
 
-        faceX = Mouse.getX();
-        faceY = -Mouse.getY() + 360;
-        mouseLoc = "Mouse position x: " + faceX + " y: " + faceY;
+        //faceX = Mouse.getX();
+        //faceY = -Mouse.getY() + gameContainer.getHeight();
+        mouseLoc = "Picture position x: " + faceX + " y: " + faceY;
+
+        Input input = gameContainer.getInput();
+        if(input.isKeyDown(Input.KEY_UP)){
+            faceY -=1;
+        }
+        if(input.isKeyDown(Input.KEY_DOWN)){
+            faceY +=1;
+        }
+        if(input.isKeyDown(Input.KEY_LEFT)){
+            faceX -=1;
+        }
+        if(input.isKeyDown(Input.KEY_RIGHT)){
+            faceX +=1;
+        }
 
     }
 
