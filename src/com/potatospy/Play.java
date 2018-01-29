@@ -27,6 +27,8 @@ public class Play extends BasicGameState{
                        Graphics g)
             throws SlickException{
 
+        g.drawString("Playstate", 50,50);
+
     }
 
 

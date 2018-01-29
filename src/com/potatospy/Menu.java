@@ -22,7 +22,7 @@ public class Menu extends BasicGameState{
     // Housekeeping ////////////////////////////////////////////////////////
     public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
 
-        face = new Image("res/face.png");
+
 
     }
 
@@ -30,11 +30,8 @@ public class Menu extends BasicGameState{
     // Draws graphics ////////////////////////////////////////////////////////
     public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics g) throws SlickException{
 
-        // Draw Mouse coordinates
-        g.drawString(mouseLoc, 50, 50);
-
-        // Draw initial face position
-        g.drawImage(face,faceX,faceY);
+        g.fillOval(75, 100, 100, 100);
+        g.drawString("Start Game", 80, 70);
 
     }
 
@@ -42,22 +39,15 @@ public class Menu extends BasicGameState{
     // Updating graphics /////////////////////////////////////////////////////
     public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int delta) throws SlickException{
 
-        //faceX = Mouse.getX();
-        //faceY = -Mouse.getY() + gameContainer.getHeight();
-        mouseLoc = "Picture position x: " + faceX + " y: " + faceY;
-
         Input input = gameContainer.getInput();
-        if(input.isKeyDown(Input.KEY_UP)){
-            faceY -=1;
-        }
-        if(input.isKeyDown(Input.KEY_DOWN)){
-            faceY +=1;
-        }
-        if(input.isKeyDown(Input.KEY_LEFT)){
-            faceX -=1;
-        }
-        if(input.isKeyDown(Input.KEY_RIGHT)){
-            faceX +=1;
+        int xpos= Mouse.getX();
+        int ypos = Mouse.getY();
+
+        // Change game state when mouse is in oval
+        if(xpos >75 && xpos <175 && ypos > 160 && ypos < 260){
+            if(input.isMouseButtonDown(0)){     // 0 == Left Click
+                stateBasedGame.enterState(1);   // Go to state 1 == Play
+            }
         }
 
     }
