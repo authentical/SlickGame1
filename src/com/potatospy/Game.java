@@ -1,7 +1,7 @@
 package com.potatospy;
 
 /* SlickGame 1 from tutorial by Bucky Roberts
-https://www.youtube.com/channel/UCJbPGzawDH1njbqV-D5HqKw
+https://www.youtube.com/watch?v=1GcgHpPHatE&list=PL210C2267A8922854&index=1
 */
 
 
