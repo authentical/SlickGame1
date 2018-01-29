@@ -7,11 +7,8 @@ import org.lwjgl.input.Mouse;
 
 public class Menu extends BasicGameState{
 
-    public String mouseLoc = "No mouse!";
-
-    Image face;
-    int faceX = 200;
-    int faceY = 200;
+    Image playNow;
+    Image exitGame;
 
     // CONSTRUCTOR ///////////////////////////////////////////////////////////
     public Menu(int state){
@@ -19,10 +16,11 @@ public class Menu extends BasicGameState{
     }
 
 
-    // Housekeeping ////////////////////////////////////////////////////////
+    // Housekeeping / Set up images and animations
     public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
 
-
+        playNow = new Image("res/playNow.png");
+        exitGame = new Image("res/exitGame.png");
 
     }
 
@@ -30,23 +28,32 @@ public class Menu extends BasicGameState{
     // Draws graphics ////////////////////////////////////////////////////////
     public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics g) throws SlickException{
 
-        g.fillOval(75, 100, 100, 100);
-        g.drawString("Start Game", 80, 70);
 
+        // Draw button image
+        g.drawString("Welcome to this amazing game", 100, 50);
+        playNow.draw(100,100);
+        exitGame.draw(100,200);
     }
 
 
     // Updating graphics /////////////////////////////////////////////////////
     public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int delta) throws SlickException{
 
-        Input input = gameContainer.getInput();
-        int xpos= Mouse.getX();
+        int xpos = Mouse.getX();
         int ypos = Mouse.getY();
 
-        // Change game state when mouse is in oval
-        if(xpos >75 && xpos <175 && ypos > 160 && ypos < 260){
-            if(input.isMouseButtonDown(0)){     // 0 == Left Click
-                stateBasedGame.enterState(1);   // Go to state 1 == Play
+        // PLAY button
+        if(xpos > 100 && xpos < 311&& ypos > 209&& ypos < 260){
+            if(Mouse.isButtonDown(0)){
+                stateBasedGame.enterState(1);
+            }
+        }
+
+        // EXIT button
+        // PLAY button
+        if(xpos > 100 && xpos < 311&& ypos > 109&& ypos < 160){
+            if(Mouse.isButtonDown(0)) {
+                System.exit(0);
             }
         }
 
